@@ -1,13 +1,15 @@
-import './App.css'
-import PasswordGenerator from './components/PasswordGenerator'
+import "./App.css";
+import PasswordGenerator from "./components/PasswordGenerator";
+import Wrapper from "./components/Wrapper";
 
 function App() {
-
-  return (
-    <>
-      <PasswordGenerator />
-    </>
-  )
+    return (
+        <>
+            <Wrapper>
+                <PasswordGenerator />
+            </Wrapper>
+        </>
+    );
 }
 
-export default App
+export default App;
