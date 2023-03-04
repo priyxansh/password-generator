@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import "./css/PasswordGenerator.css";
 
 export default function PasswordGenerator() {
-
-
     return (
         <section className="container">
             <h1>Password Generator</h1>
