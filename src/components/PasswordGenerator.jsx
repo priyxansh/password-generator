@@ -42,7 +42,9 @@ export default function PasswordGenerator() {
         let tempPassword = "";
 
         options.forEach((option) => {
-            template += option.checked && option.template;
+            if (option.checked) {
+                template += option.template;
+            }
         });
 
         for (let i = 0; i < length; i++) {
