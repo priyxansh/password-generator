@@ -17,7 +17,12 @@ export default function PasswordGenerator() {
             id: 1,
             template: "abcdefghijklmnopqrstuvwxyz",
         },
-        { title: "Numbers", checked: false, id: 2, template: "0123456789" },
+        {
+            title: "Numbers",
+            checked: false,
+            id: 2,
+            template: "0123456789".repeat(2), // repeat(2) to increase number probability
+        },
         {
             title: "Symbols",
             checked: false,
@@ -35,6 +40,10 @@ export default function PasswordGenerator() {
         const temp = tempOptions.find((option) => option.id === id);
         temp.checked = !temp.checked;
         setOptions(tempOptions);
+    };
+
+    const passwordCopyHandler = () => {
+        navigator.clipboard.writeText(password);
     };
 
     useEffect(() => {
@@ -58,11 +67,12 @@ export default function PasswordGenerator() {
     return (
         <section className="container">
             <h1>Password Generator</h1>
-            <div className="display cell">
+            <div className="display cell" onClick={passwordCopyHandler}>
                 <span className="password">{password}</span>
             </div>
             <LengthSlider length={length} onChange={sliderChangeHandler} />
             <div className="settings-wrapper">
+                <span>Settings</span>
                 <div className="options-container">
                     {options.map((option) => (
                         <Option
@@ -80,7 +90,7 @@ export default function PasswordGenerator() {
 
 const LengthSlider = ({ length, onChange }) => {
     const [maxLength, setMaxLength] = useState(24);
-    const inputRef = useRef("");
+    const inputRef = useRef(null);
 
     const inputScrollHandler = (e) => {
         e.preventDefault();
