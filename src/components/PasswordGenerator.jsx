@@ -56,12 +56,15 @@ export default function PasswordGenerator() {
             }
         });
 
-        for (let i = 0; i < length; i++) {
-            tempPassword +=
-                template[Math.floor(Math.random() * template.length)];
+        if (template) {
+            for (let i = 0; i < length; i++) {
+                tempPassword +=
+                    template[Math.floor(Math.random() * template.length)];
+            }
+            setPassword(tempPassword);
+        } else {
+            setPassword("Please select atleast one generation option.");
         }
-
-        setPassword(tempPassword);
     }, [length, options]);
 
     return (
@@ -71,8 +74,8 @@ export default function PasswordGenerator() {
                 <span className="password">{password}</span>
             </div>
             <LengthSlider length={length} onChange={sliderChangeHandler} />
-            <div className="settings-wrapper">
-                <span>Settings</span>
+            <div className="options-wrapper">
+                <span>Options</span>
                 <div className="options-container">
                     {options.map((option) => (
                         <Option
